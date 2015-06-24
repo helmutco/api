@@ -12,10 +12,6 @@ use App\Http\Models\User;
 |
 */
 
-/**
-* 
-*/
-
 $app->get('/', function() use ($app){
 	return $app->welcome();
 });
@@ -24,8 +20,8 @@ $app->get('user/{id}', function($id) use ($app) {
 	return User::find($id);
 });
 
-$app->post('user', [
-    'as' => 'create', 'uses' => 'App\Http\Controllers\UserController@create'
+$app->get('checkuser', [
+    'as' => 'create', 'uses' => 'App\Http\Controllers\UserController@checkuser'
 ]);
 
 $app->get('auto', [

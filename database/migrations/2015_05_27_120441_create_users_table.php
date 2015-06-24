@@ -14,9 +14,9 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('ht_users', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->bigInteger('id')->unsigned()->increments();
 			$table->string('email')->unique();
-			$table->text('params');
+			$table->text('params')->nullable();
 			$table->timestamps();
 		});
 	}
@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('users');
+		Schema::drop('ht_users');
 	}
 
 }
