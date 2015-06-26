@@ -55,7 +55,7 @@ $app->singleton(
 |
 */
 $app->middleware([
-    'App\Http\Middleware\AllowOriginMiddleware',
+    'App\Http\Middleware\CorsMiddleware',
     // 'Illuminate\Cookie\Middleware\EncryptCookies',
     // 'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
      'Illuminate\Session\Middleware\StartSession',

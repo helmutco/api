@@ -9,6 +9,8 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use App\Http\Models\User;
 use Lbc\GetFrom;
+use Auth;
+use Illuminate\Http\Response;
 
 class UserController extends BaseController
 {
@@ -31,8 +33,10 @@ class UserController extends BaseController
             // When validation fails or other local issues
         }
         if ($session) {
-             $this->retrieveUser($session);
-        } 
+            return $this->retrieveUser($session);
+        } else {
+            return ['bouhh'];
+        }
     }
 
     public function retrieveUser($session)
@@ -50,10 +54,12 @@ class UserController extends BaseController
             $user_bdd->gender = $user['gender'];
             $user_bdd->locale = $user['locale'];
             $user_bdd->timezone = $user['timezone'];
+
             if ($user_bdd->save()) {
+                // Auth::loginUsingId($user_bdd->id);
                 return $user;
             }
-            return false;
+            return [false];
 
         } catch(FacebookRequestException $e) {
             // echo "Exception occured, code: " . $e->getCode();
