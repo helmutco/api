@@ -17,7 +17,7 @@ class UserController extends BaseController
    	
     public function __construct()
     {
-        FacebookSession::setDefaultApplication('423496154496720', 'c28cf6fe706e4e6c03906f85df9e398e');
+        FacebookSession::setDefaultApplication('389313394581663', 'c4ce6a4627d27c20dbe002fef2414b7f');
     }
 
     public function checkUser(Request $request)
