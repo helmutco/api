@@ -20,8 +20,12 @@ $app->get('user/{id}', function($id) use ($app) {
 	return User::find($id);
 });
 
+$app->get('login', [
+    'as' => 'login', 'uses' => 'App\Http\Controllers\UserController@login'
+]);
+
 $app->get('checkuser', [
-    'as' => 'create', 'uses' => 'App\Http\Controllers\UserController@checkuser'
+    'as' => 'checkuser', 'uses' => 'App\Http\Controllers\UserController@checkuser'
 ]);
 
 $app->get('auto', [

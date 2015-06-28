@@ -16,6 +16,10 @@ class CorsMiddleware
 	    		$response->header('Access-Control-Allow-Origin', 'http://helmut.dev');
 	    		break;
 
+	    	case 'http://alphaone.helmut.co':
+	    		$response->header('Access-Control-Allow-Origin', 'http://alphaone.helmut.co');
+	    		break;
+
 	    	case 'http://helmut.co':
 	    		$response->header('Access-Control-Allow-Origin', 'http://helmut.co');
 	    		break;

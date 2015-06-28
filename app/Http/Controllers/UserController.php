@@ -17,10 +17,11 @@ class UserController extends BaseController
    	
     public function __construct()
     {
-        FacebookSession::setDefaultApplication('389313394581663', 'c4ce6a4627d27c20dbe002fef2414b7f');
+        
+        FacebookSession::setDefaultApplication(env('FACEBOOK_KEY'), env('FACEBOOK_SECRET'));
     }
 
-    public function checkUser(Request $request)
+    public function login(Request $request)
     {
         $helper = new FacebookJavaScriptLoginHelper();
         try {
@@ -33,13 +34,13 @@ class UserController extends BaseController
             // When validation fails or other local issues
         }
         if ($session) {
-            return $this->retrieveUser($session);
+            return $this->saveUser($session);
         } else {
-            return ['bouhh'];
+            return ['Session empty :('];
         }
     }
 
-    public function retrieveUser($session)
+    private function saveUser($session)
     {
         try {
             $user_profile = (new FacebookRequest($session, 'GET', '/me'))
@@ -56,7 +57,7 @@ class UserController extends BaseController
             $user_bdd->timezone = $user['timezone'];
 
             if ($user_bdd->save()) {
-                // Auth::loginUsingId($user_bdd->id);
+                Auth::loginUsingId($user_bdd->id);
                 return $user;
             }
             return [false];
@@ -80,6 +81,12 @@ class UserController extends BaseController
 
         //
     }
+
+    public function checkuser()
+    {
+        return [Auth::user()];
+    }
+
 
     public function getauto()
     {
